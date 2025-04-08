@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Lib Components</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #121212;
+        color: #f0f0f0;
+      }
+
+      header {
+        text-align: center;
+        padding: 2rem 1rem;
+      }
+
+      h1 {
+        font-size: 2.5rem;
+        margin-bottom: 0.5rem;
+      }
+
+      p {
+        color: #aaa;
+        font-size: 1rem;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 1.5rem;
+        padding: 2rem;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .card {
+        background-color: #1e1e1e;
+        border-radius: 9px;
+        padding: 1.5rem;
+        box-shadow: 0 4px 23px rgb(15 15 15);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        text-decoration: none;
+        color: inherit;
+      }
+
+      .card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.6);
+      }
+
+      .card h2 {
+        margin: 0 0 0.5rem;
+        font-size: 1.3rem;
+        color: #ffffff;
+      }
+
+      .card p {
+        margin: 0;
+        font-size: 0.95rem;
+        color: #6f6f6f;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>My Lib Components</h1>
+      <p>Componentes e projetos hospedados no GitHub Pages</p>
+    </header>
+
+    <section class="grid">
+      <a
+        href="https://seu-github.github.io/componente1"
+        class="card"
+        target="_blank"
+      >
+        <h2>Componente 1</h2>
+        <p>Descrição rápida do componente ou funcionalidade.</p>
+      </a>
+
+      <a
+        href="https://seu-github.github.io/componente2"
+        class="card"
+        target="_blank"
+      >
+        <h2>Componente 2</h2>
+        <p>Explicação resumida do que esse projeto faz.</p>
+      </a>
+
+      <a
+        href="https://seu-github.github.io/componente3"
+        class="card"
+        target="_blank"
+      >
+        <h2>Componente 3</h2>
+        <p>Mais um card para testar seu portfólio visual.</p>
+      </a>
+
+      <!-- É só duplicar este bloco <a class="card"...> e trocar os dados -->
+    </section>
+  </body>
+</html>

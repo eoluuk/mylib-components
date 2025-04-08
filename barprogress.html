@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Status Bot Avançado</title>
+    <style>
+      body {
+        background-color: #0e0e0e;
+        font-family: Arial, sans-serif;
+        color: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+
+      .container {
+        text-align: center;
+        width: 90%;
+        max-width: 500px;
+      }
+
+      .status-text {
+        font-size: 1.5rem;
+        margin-bottom: 30px;
+        min-height: 30px;
+        transition: opacity 0.4s ease;
+      }
+
+      .progress-wrapper {
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 20px;
+        padding: 0 10px;
+      }
+
+      .progress-line {
+        position: absolute;
+        top: 50%;
+        left: 10px;
+        right: 10px;
+        height: 6px;
+        background: #333;
+        z-index: 1;
+        border-radius: 4px;
+        overflow: hidden;
+      }
+
+      .progress-fill {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 0%;
+        background: linear-gradient(90deg, #2d7dff, #55aaff);
+        transition: width 1.5s ease;
+      }
+
+      .step {
+        z-index: 2;
+        width: 30px;
+        height: 30px;
+        background-color: #666;
+        border: 3px solid #888;
+        border-radius: 50%;
+        transition: all 0.5s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        color: white;
+        font-size: 0.9rem;
+      }
+
+      .step.active {
+        background-color: #2d7dff;
+        border-color: #55aaff;
+        box-shadow: 0 0 10px #55aaff;
+      }
+      .step.done {
+        background-color: #1a2941;
+        border-color: #5a9294;
+        box-shadow: 0 0 8px #2ecc71;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="status-text" id="statusText">Analisando</div>
+
+      <div class="progress-wrapper">
+        <div class="progress-line">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+        <div class="step" id="step1">1</div>
+        <div class="step" id="step2">2</div>
+        <div class="step" id="step3">3</div>
+      </div>
+    </div>
+
+    <script>
+      const etapas = ["Analisando...", "Adquirindo...", "Finalizado"];
+      const progresso = [0, 50, 100]; // Percentual da linha de progresso
+      const statusText = document.getElementById("statusText");
+      const progressFill = document.getElementById("progressFill");
+      const steps = [
+        document.getElementById("step1"),
+        document.getElementById("step2"),
+        document.getElementById("step3"),
+      ];
+
+      let etapaAtual = 0;
+
+      function atualizar() {
+        statusText.style.opacity = 0;
+
+        setTimeout(() => {
+          // Atualiza o texto
+          statusText.textContent = etapas[etapaAtual];
+          statusText.style.opacity = 1;
+
+          // Atualiza o progresso visual
+          progressFill.style.width = progresso[etapaAtual] + "%";
+
+          // Atualiza bolinhas
+          steps.forEach((step, index) => {
+            step.classList.remove("active", "done");
+            if (index < etapaAtual) {
+              step.classList.add("done");
+            } else if (index === etapaAtual) {
+              step.classList.add("active");
+            }
+          });
+
+          etapaAtual++;
+          if (etapaAtual < etapas.length) {
+            setTimeout(atualizar, 2000);
+          }
+        }, 500);
+      }
+
+      atualizar();
+    </script>
+  </body>
+</html>
